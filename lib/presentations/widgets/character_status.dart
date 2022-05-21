@@ -1,0 +1,36 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+enum LiveState { alive, dead, unknown}
+
+class CharacterStatus extends StatelessWidget{
+  final LiveState liveState;
+  const CharacterStatus({Key? key, required this.liveState}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Icon(
+          Icons.circle,
+          size: 11,
+          color: liveState == LiveState.alive
+            ? Colors.green
+            : liveState == LiveState.dead
+            ? Colors.red
+            : Colors.grey
+        ),
+        const SizedBox(width: 6,),
+        Text(
+            liveState == LiveState.alive
+                ? 'Alive'
+                : liveState == LiveState.dead
+                ? 'Dead'
+                : 'Unknown',
+          style: const TextStyle(color: Colors.white),
+        )
+      ],
+    );
+  }
+}
